@@ -2,7 +2,7 @@
 
 ## Description
 
-Moleculer Mixin to provide a _MongoDB_ database interface to _[Moleculer](https://www.google.com)_ microservices.
+Moleculer Mixin to provide a _MongoDB_ database interface to _[Moleculer](https://moleculer.services)_ microservices.
 
 ## Installation
 
@@ -12,7 +12,7 @@ or
 
 ## Usage
 
-When defining your _[Moleculer](https://www.google.com)_ service add the _DBService_ as a mixin:
+When defining your _[Moleculer](https://moleculer.services)_ service add the _DBService_ as a mixin:
 
 ```javascript
 const DBService = require('services-db-mixin')
