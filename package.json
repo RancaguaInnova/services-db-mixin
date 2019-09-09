@@ -1,0 +1,26 @@
+{
+  "name": "services-db-mixin",
+  "version": "2.0.4",
+  "description": "Moleculer mixin to provide a mongodb interface for microservices",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RancaguaInnova/services-db-mixin"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mixin",
+    "mongodb",
+    "moleculer",
+    "microservices",
+    "rancagua-digital"
+  ],
+  "author": "Joaquín Gumucio <jjgumucio@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "moleculer-db": "^0.8.2",
+    "moleculer-db-adapter-mongo": "^0.4.5"
+  }
+}
