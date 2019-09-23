@@ -24,6 +24,7 @@ module.exports = function (logger) {
       addLogInfo: function (context, entityId) {
         const [resource, action] = context.action.name.split('.').slice(1)
         const { user, origin } = context.meta
+        const userId = user && user.id ? user.id : ''
 
         if (includes(['create', 'update', 'remove'], action)) {
           const logDoc = {
@@ -32,11 +33,11 @@ module.exports = function (logger) {
             resource: capitalize(resource),
             action,
             entityId,
-            userId: user.id || ''
+            userId: userId
           }
-          if (resource !== logger.name) {
-            this.logger.info(logDoc)
-            if (logger) {
+          this.logger.info(logDoc)
+          if (logger) {
+            if (resource !== logger.name) {
               context.call(
                 `v${logger.version}.${logger.name}.${logger.action}`,
                 logDoc
