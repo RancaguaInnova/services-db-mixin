@@ -27,12 +27,12 @@ module.exports = function (logger) {
 
         if (includes(['create', 'update', 'remove'], action)) {
           const logDoc = {
-            origin,
+            origin: origin || '',
             date: new Date(),
             resource: capitalize(resource),
             action,
             entityId,
-            userId: user.id
+            userId: user.id || ''
           }
           if (resource !== logger.name) {
             this.logger.info(logDoc)
