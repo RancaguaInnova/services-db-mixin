@@ -31,5 +31,6 @@ module.exports = {
 }
 ```
 
-**NOTE:** If you don't pass a database url or don't set the MONGODB_URI env var, This package will use _moleculer-db MemoryAdapter_.
-This is usefull for running tests.
+**NOTE:** 
+If you don't pass a database url or don't set the MONGODB_URI env var, This package will use _moleculer-db MemoryAdapter_.
+This is usefull for running tests without hitting the database.
