@@ -15,7 +15,7 @@ const entityCreated = async function(jsonEntity, context) {
     await this.addLogInfo(context, jsonEntity.id)
   } catch (error) {
     console.error("Error on entity created event:", error)
-    return new Promise.reject(error)
+    return Promise.reject(error)
   }
 }
 
@@ -36,7 +36,7 @@ const entityUpdated = async function(jsonEntity, context) {
     await this.addLogInfo(context, jsonEntity.id)
   } catch (error) {
     console.error("Error on entity updated event:", error)
-    return new Promise.reject(error)
+    return Promise.reject(error)
   }
 }
 
@@ -57,7 +57,7 @@ const entityDeleted = async function(jsonEntity, context) {
     await this.addLogInfo(context, jsonEntity.id)
   } catch (error) {
     console.error("Error on entity deleted event:", error)
-    return new Promise.reject(error)
+    return Promise.reject(error)
   }
 }
 
