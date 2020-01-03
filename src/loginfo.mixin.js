@@ -1,5 +1,5 @@
-const capitalize = require('lodash/capitalize')
-const includes = require('lodash/includes')
+const capitalize = require("lodash/capitalize")
+const includes = require("lodash/includes")
 
 /**
  * Logs DB operations to broker logger or a personalized logger service
@@ -10,26 +10,25 @@ const includes = require('lodash/includes')
  * @param {String} logger.action Service action to call
  * @returns
  */
-module.exports = function (logger) {
+module.exports = function(logger) {
   return {
     methods: {
-
       /**
-     * Log operations to passed logger
-     *
-     * @param {Object} context Moleculer Service Context
-     * @param {String} entityId Id of the entity/document
-     *
-     * @returns {Void}
-     */
-      addLogInfo: function (context, entityId) {
-        const [resource, action] = context.action.name.split('.').slice(1)
+       * Log operations to passed logger
+       *
+       * @param {Object} context Moleculer Service Context
+       * @param {String} entityId Id of the entity/document
+       *
+       * @returns {Void}
+       */
+      addLogInfo: async function(context, entityId) {
+        const [resource, action] = context.action.name.split(".").slice(1)
         const { user, origin } = context.meta
-        const userId = user && user.id ? user.id : ''
+        const userId = user && user.id ? user.id : ""
 
-        if (includes(['create', 'update', 'remove'], action)) {
+        if (includes(["create", "update", "remove"], action)) {
           const logDoc = {
-            origin: origin || '',
+            origin: origin || "",
             date: new Date(),
             resource: capitalize(resource),
             action,
@@ -39,10 +38,11 @@ module.exports = function (logger) {
           this.logger.info(logDoc)
           if (logger) {
             if (resource !== logger.name) {
-              context.call(
-                `v${logger.version}.${logger.name}.${logger.action}`,
-                logDoc
-              )
+              try {
+                await context.call(`v${logger.version}.${logger.name}.${logger.action}`, logDoc)
+              } catch (error) {
+                console.error("Error calling logger:", error)
+              }
             }
           }
         }
