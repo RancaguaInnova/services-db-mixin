@@ -42,6 +42,7 @@ module.exports = function(logger) {
                 await context.call(`v${logger.version}.${logger.name}.${logger.action}`, logDoc)
               } catch (error) {
                 console.error("Error calling logger:", error)
+                return new Promise.reject(error)
               }
             }
           }
