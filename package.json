@@ -1,7 +1,8 @@
 {
   "name": "services-db-mixin",
-  "version": "2.3.2",
-  "description": "Moleculer mixin to provide a mongodb interface for microservices",
+  "version": "2.3.3",
+  "description":
+    "Moleculer mixin to provide a mongodb interface for microservices",
   "main": "src/index.js",
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
-const MongoAdapter = require("moleculer-db-adapter-mongo")
-const DbService = require("moleculer-db")
-const { entityCreated, entityDeleted, entityUpdated } = require("./events")
-const LogInfo = require("./loginfo.mixin")
+const MongoAdapter = require('moleculer-db-adapter-mongo')
+const DbService = require('moleculer-db')
+const { entityCreated, entityDeleted, entityUpdated } = require('./events')
+const LogInfo = require('./loginfo.mixin')
 /**
  * Creates a DB interface for Moleculer Services
  *
@@ -13,15 +13,20 @@ const LogInfo = require("./loginfo.mixin")
  * @param {Object} logger.action Action to call on the logger service
  * @returns
  */
-module.exports = function(mongoUrl, collection, logger) {
+module.exports = function (mongoUrl, collection, logger) {
   const dbUrl = mongoUrl || process.env.MONGO_URI
   if (!dbUrl) {
-    console.warn("MONGODB_URI not set. Using memory adapter")
+    console.warn('MONGODB_URI not set. Using memory adapter')
   }
 
   return {
     mixins: [DbService, LogInfo(logger)],
-    adapter: dbUrl ? new MongoAdapter(dbUrl) : new DbService.MemoryAdapter(),
+    adapter: dbUrl
+      ? new MongoAdapter(dbUrl, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true
+        })
+      : new DbService.MemoryAdapter(),
     collection,
     methods: {
       entityCreated,
